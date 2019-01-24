@@ -5,6 +5,10 @@
 
 #define ALARMTHRESHOLD 45.0
 
+#define FANSTARTTEMPERATURE 25
+#define FANSTARTPWM 90
+#define CURVESTEEPNESS 16.5
+
 #define R1 10000.0
 #define C1 1.009249522e-03
 #define C2 2.378405444e-04
@@ -15,6 +19,7 @@ float R2;
 float T;
 long startTime;
 int pwmSteering = 0;
+
 
 void setup() 
 {
@@ -60,7 +65,7 @@ void beep()
 
 void steerFan(float temperature)
 {
-	pwmSteering = (int)(u(temperature - 25)*((165/10) * (temperature - 25)  + 90));
+	pwmSteering = (int)(u(temperature - FANSTARTTEMPERATURE)*(CURVESTEEPNESS * (temperature - FANSTARTTEMPERATURE)  + FANSTARTPWM));
 	if(pwmSteering > 255)
 	{
 		pwmSteering = 255;
