@@ -3,7 +3,7 @@
 #define BUZZERPIN 7
 #define FANPIN 10
 
-#define ALARMTHRESHHOLD 45.0
+#define ALARMTHRESHOLD 45.0
 
 #define R1 10000.0
 #define C1 1.009249522e-03
@@ -33,7 +33,7 @@ void loop()
 	Serial.print(T);
 	Serial.println(" C");   
 
-	if(T > ALARMTHRESHHOLD)
+	if(T > ALARMTHRESHOLD)
 	{
 		beep();
 	}
